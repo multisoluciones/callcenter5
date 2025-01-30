@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `calls` (
   `datetime_originate` datetime default NULL,
 
   /* 2012-12-07: Store trunk used to route outgoing call */
-  `trunk`               varchar(20),
+  `trunk`               varchar(50),
 
   /* 2015-12-12: Tell apart calls loaded from CSV and scheduled calls */
   `scheduled` BOOLEAN NOT NULL DEFAULT 0,
@@ -395,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `call_entry` (
   `duration_wait` int(11) default NULL,
   `uniqueid` varchar(32) default NULL,
   `id_campaign` int(10) unsigned,
-  `trunk` varchar(20) NOT NULL,
+  `trunk` varchar(50) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `id_agent` (`id_agent`),
   KEY `id_queue_call_entry` (`id_queue_call_entry`),
@@ -466,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `call_progress_log` (
     `new_status`        varchar(32) NOT NULL,
     `retry`             int(10) unsigned,
     `uniqueid`          varchar(32),
-    `trunk`             varchar(20),
+    `trunk`             varchar(50),
     `id_agent`          int(10) unsigned,
     `duration`          int(10) unsigned,
 
@@ -651,7 +651,7 @@ BEGIN
         AND COLUMN_NAME = 'trunk';
     IF l_existe_columna = 0 THEN
         ALTER TABLE call_entry
-        ADD COLUMN trunk varchar(20) NOT NULL;
+        ADD COLUMN trunk varchar(50) NOT NULL;
     END IF;
 END;
 ++
@@ -808,7 +808,7 @@ BEGIN
         AND COLUMN_NAME = 'trunk';
     IF l_existe_columna = 0 THEN
         ALTER TABLE calls
-        ADD COLUMN trunk varchar(20);
+        ADD COLUMN trunk varchar(50);
     END IF;
 END;
 ++

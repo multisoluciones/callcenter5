@@ -56,7 +56,7 @@ if (file_exists($path_script_db))
         "ADD COLUMN agent varchar(32)");
     crearColumnaSiNoExiste($pDB, 'call_center', 'call_entry',
         'trunk',
-        "ADD COLUMN trunk varchar(20) NOT NULL");
+        "ADD COLUMN trunk varchar(50) NOT NULL");
     crearColumnaSiNoExiste($pDB, 'call_center', 'calls',
         'failure_cause',
         "ADD COLUMN failure_cause int(10) unsigned default null, ADD COLUMN failure_cause_txt varchar(32) default null");
@@ -74,7 +74,7 @@ if (file_exists($path_script_db))
         "ADD COLUMN id_url int unsigned, ADD FOREIGN KEY (id_url) REFERENCES campaign_external_url (id)");
     crearColumnaSiNoExiste($pDB, 'call_center', 'calls',
         'trunk',
-        "ADD COLUMN trunk varchar(20) NOT NULL");
+        "ADD COLUMN trunk varchar(50) NOT NULL");
     crearColumnaSiNoExiste($pDB, 'call_center', 'agent',
         'type',
         "ADD COLUMN type enum('Agent','SIP','IAX2') DEFAULT 'Agent' NOT NULL AFTER id");
